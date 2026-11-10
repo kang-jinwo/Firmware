@@ -1,5 +1,6 @@
 hello
 hello.exe
 build/
+out/
 *.o
 __pycache__/
