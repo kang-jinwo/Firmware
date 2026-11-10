@@ -1,0 +1,5 @@
+hello
+hello.exe
+build/
+*.o
+__pycache__/
