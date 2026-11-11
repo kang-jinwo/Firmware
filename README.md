@@ -40,6 +40,9 @@
 | 13 | M10 | [`M10_report.md`](docs/M10_report.md) | 보고서 한 장, 학업계획서용 요약 |
 | 14 | 여유 | — | 밀린 것, 다시 보고 싶은 것 |
 
+프로젝트를 마친 뒤(또는 M4까지 본 뒤)에는 **[`advanced/`](advanced/README.md) 심화: 메모리 모델과 펌웨어** 로 간다.
+프로젝트는 2학년까지 배운 것을 잇는 것이 목적이고, 심화는 그중 하나(메모리)를 깊이 파는 곳이다.
+
 문법이 막히면: [`docs/c_notes.md`](docs/c_notes.md) (C), [`docs/python_notes.md`](docs/python_notes.md) (Python)
 
 ## 기록 두 가지
@@ -69,6 +72,7 @@ sim/                 plant 와 firmware 를 묶어 돌리고 CSV로 기록 (C)
 tests/               검증 코드 뼈대 (내가 직접 채운다)
 tools/               그래프 코드 뼈대 (내가 직접 채운다)
 solution/            검증·그래프 코드 정답, 참고 그래프 (막혔을 때만 연다)
+advanced/            심화: 메모리 모델 실습 A1~A6, 프로젝트 이후 로드맵 A7
 log/                 학습 기록 (내가 쓴다), 질문 기록 QNA.md
 CLAUDE.md            AI가 지킬 작업 규칙
 run.py               컴파일 → 실행 → 테스트를 한 번에
@@ -86,6 +90,7 @@ python run.py all          전부
 python run.py list         실험 목록과 옵션 보기
 python run.py test         내가 쓴 검증 코드 실행
 python run.py test --solution    정답 검증 코드 실행
+python run.py lab a1_memory_map  심화 실습 하나 실행 (advanced/labs/)
 ```
 
 값을 바꿔 가며 직접 돌릴 때는 시뮬레이터를 바로 부른다 (Windows는 `build\sim.exe`):

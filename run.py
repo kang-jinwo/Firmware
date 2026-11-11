@@ -9,6 +9,7 @@
     python run.py list         실험 목록과 각 실험의 옵션을 보여 준다
     python run.py test         tests/ 에 내가 쓴 검증 코드를 돌린다
     python run.py test --solution   solution/ 의 정답 검증 코드를 돌린다
+    python run.py lab a1_memory_map   심화 실습(advanced/labs/) 하나를 컴파일해서 실행
 
 결과 CSV는 out/ 폴더에 생긴다.
 """
@@ -160,9 +161,26 @@ def run_tests(use_solution):
     return failed == 0
 
 
+def run_lab(name):
+    """advanced/labs/<name>.c 를 최적화 없이(-O0) 컴파일해서 실행한다."""
+    src = os.path.join("advanced", "labs", name + ".c")
+    if not os.path.exists(os.path.join(ROOT, src)):
+        labs = sorted(os.path.basename(p)[:-2] for p in glob.glob(os.path.join(ROOT, "advanced", "labs", "*.c")))
+        sys.exit("no such lab: %s\navailable: %s" % (name, ", ".join(labs)))
+    os.makedirs(BUILD, exist_ok=True)
+    exe = os.path.join(BUILD, name + EXE)
+    if not sh(["gcc", "-std=c11", "-Wall", "-Wextra", "-O0", "-pthread", "-o", exe, src]):
+        sys.exit("build failed")
+    sh([exe])
+
+
 def main():
     args = sys.argv[1:]
     what = args[0] if args else "default"
+
+    if what == "lab":
+        run_lab(args[1] if len(args) > 1 else "")
+        return
 
     if what == "list":
         for name, runs in EXPERIMENTS.items():
